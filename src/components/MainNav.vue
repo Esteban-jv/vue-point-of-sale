@@ -33,7 +33,7 @@
     </div>
     <nav>
         <Link
-         :to="{name: 'admin'}"
+         :to="{name: 'sales'}"
         >
             Administrar
         </Link>
