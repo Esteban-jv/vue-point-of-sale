@@ -28,8 +28,15 @@ export const useCartStore = defineStore('cart', () => {
             items.value.push({...item, quantity: 1, id: item.id})
         }
     }
+    // Deprecated
     function updateQuantity(id, quantity) {
         items.value = items.value.map( item => item.id === id ? {...item, quantity} : item )
+    }
+    function addQuantity(id) {
+        items.value = items.value.map( item => item.id === id ? {...item, quantity: item.quantity+1 } : item )
+    }
+    function remQuantity(id) {
+        items.value = items.value.map( item => item.id === id ? {...item, quantity: item.quantity-1 } : item )
     }
     function removeItem(id) {
         items.value = items.value.filter( item => item.id !== id)
@@ -106,7 +113,9 @@ export const useCartStore = defineStore('cart', () => {
         total,
         // Methods
         addItem,
-        updateQuantity,
+        // updateQuantity,
+        addQuantity,
+        remQuantity,
         removeItem,
         checkout,               //carrito
         // Computed

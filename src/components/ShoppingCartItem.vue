@@ -25,17 +25,36 @@
       <h3 class="text gray-900">{{ item.name }}</h3>
       <p>{{ formatCurrency(item.price) }}</p>
 
-      <select
+      <!-- <select
         class="w-32 text-center p-2 rounded-lg bg-white"
         @change="cart.updateQuantity(item.id, +$event.target.value)"
         :value="item.quantity"
       >
-        <!-- Cambiar a input y buttons + y - -->
         <option
           v-for="n in cart.checkProductAvailability(item)"
           :value="n"
         >{{ n }}</option>
-      </select>
+      </select> -->
+      <button
+        class="w-8 h-10 border-gray-200 bg-indigo-600 hover:bg-indigo-700 m-y-2 p-1 text-white font-bold rounded-l-md disabled:opacity-50"
+        :disabled="item.quantity === 1"
+        @click="cart.remQuantity(item.id)"
+      >
+        -
+      </button>
+      <input
+        type="number"
+        class="w-16 h-10 text-center p-2 bg-white"
+        :value="item.quantity"
+        :disabled="true"
+      >
+      <button
+        class="w-8 h-10 border-gray-200 bg-indigo-600 hover:bg-indigo-700 m-y-2 p-1 text-white font-bold rounded-r-md disabled:opacity-50"
+        @click="cart.addQuantity(item.id)"
+        :disabled="item.quantity === item.availability"
+      >
+      +
+      </button>
     </div>
 
     <div>

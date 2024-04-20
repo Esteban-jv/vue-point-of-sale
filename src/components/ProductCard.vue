@@ -1,24 +1,46 @@
 <script setup>
+  import { ref } from 'vue';
   import { useCartStore } from '@/stores/cart';
   import { formatCurrency } from '@/helpers';
 
-    defineProps({
+    const props = defineProps({
         product: {
             type: Object
         }
     })
 
+    const selectedImage = ref(props.product.image[0])
     const cart = useCartStore()
+
+    const changeImage = img => {
+      selectedImage.value = img
+    }
 </script>
 
 <template>
   <div
     class="rounded bg-white shadow relative"
     >
-    <img
-        :src="product.image[0]"
+    <div>
+      <img
+        :src="selectedImage"
         :alt="`Imagen de ${product.name}`"
-    />
+      />
+      <div class="snap-x flex">
+        <div 
+          class="snap-center flex-auto"
+          v-for="img in product.image"
+          :key="img"
+        >
+        <img
+          :src="img"
+          alt="Nueva imagen"
+          class="w-32 cursor-pointer hover:animate-pulse"
+          @click="changeImage(img)"
+        />
+        </div>
+      </div>
+    </div>
     <div class="p-3 space-y-2">
       <h3 class="text-xl font-black text-gray-500">
         {{ product.name }}
