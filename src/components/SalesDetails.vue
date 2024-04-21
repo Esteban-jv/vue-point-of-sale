@@ -10,7 +10,10 @@
 
 <template>
   <div class="border-t border-gray-200 space-y-6 py-6">
-    <h2 class="text-2xl font-black">Detalles de venta:</h2>
+    <div class="flex justify-between">
+      <h2 class="text-2xl font-black">Detalles de venta:</h2>
+      <span class="text-gray-900">{{ sale.date }}</span>
+    </div>
     <p class="text-xl font-black text-gray-500">Productos vendidos</p>
 
     <ul role="list" class="mt-6 divide-gray-200-border-t border-gray-200 text-sm font-medium text-gray-500">

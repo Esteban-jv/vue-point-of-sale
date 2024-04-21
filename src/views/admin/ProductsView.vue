@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <div class="">
+  <div class="ml-3">
     <Link
       :to="{name: 'new-product'}"
     >

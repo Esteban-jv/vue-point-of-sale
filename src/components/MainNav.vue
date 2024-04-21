@@ -15,7 +15,7 @@
           <h2 class="text-lg font-extrabold">Filtros:</h2>
 
           <div
-            class="flex items-center gap-2"
+            class="flex items-center gap-1"
             v-for="category in products.categories"
             :key="category.id"
           >

@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { Query, collection, where } from "firebase/firestore";
+import { Query, collection, where, orderBy } from "firebase/firestore";
 import { useFirestore, useCollection } from "vuefire";
 import { query } from "firebase/database";
 
@@ -14,10 +14,13 @@ export const useSalesStore = defineStore('sales', () => {
     const isDateSelected = computed(() => date.value)
     const salesSource = computed(() => {
         if(date.value) {
-            console.warn(date.value)
+            // array distructuring
+            const [startDate, endDate] = date.value.split('~')
             const q = query(
                 collection(db, 'sales'),
-                where('date', '==', date.value)
+                where('date', '>=', startDate.trim()),
+                where('date', '<=', endDate.trim()),
+                orderBy('date')
             )
             return q
         }

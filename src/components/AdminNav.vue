@@ -9,23 +9,29 @@
         <Logo />
     </div>
     <nav>
-        <RouterLink 
-            :to="{name: 'products'}"
-            class="rounded text-white font-bold p-2"
-        >
-            Productos
-        </RouterLink>
-        <RouterLink 
-            :to="{name: 'sales'}"
-            class="rounded text-white font-bold p-2"
-        >
-            Ventas
-        </RouterLink>
-        <Link
-         :to="{name: 'shop'}"
-        >
-            Tienda
-        </Link>
+        <div class="flex justify-between">
+            <div>
+                <RouterLink 
+                    :to="{name: 'products'}"
+                    class="rounded text-white font-bold p-2"
+                >
+                    Productos
+                </RouterLink>
+                <RouterLink 
+                    :to="{name: 'sales'}"
+                    class="rounded text-white font-bold p-2"
+                >
+                    Ventas
+                </RouterLink>
+            </div>
+            <div>
+                <Link
+                    :to="{name: 'shop'}"
+                    >
+                        Tienda
+                    </Link>
+            </div>
+        </div>
     </nav>
   </header>
 </template>

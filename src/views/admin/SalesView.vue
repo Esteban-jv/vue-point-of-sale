@@ -17,17 +17,17 @@
 <template>
   <h1 class="text-4xl font-black my-10">Resumen de ventas</h1>
   <div class="md:flex md:items-start gap-5">
-    <div class="md:w-1/2 lg:w-1/3 bg-white flex justify-center">
+    <div class="md:w-1/4 lg:w-1/3 flex justify-center bg-slate-100">
       <VueTailwindDatePicker
         v-model="sales.date"
         i18n="es-mx"
         :as-single="true"
-        
+        :use-range="true"
         no-input
         :formatter="formatter"
-      /> <!-- :use-range="true" -->
+      /> <!-- -->
     </div>
-    <div class="md:w-1/2 lg:w-2/3 space-y-5 lg:h-screen lg:overflow-y-scroll p-5 pb-32">
+    <div class="md:w-3/4 lg:w-2/3 space-y-5 lg:h-screen lg:overflow-y-scroll p-5 pb-32">
       <p v-if="sales.isDateSelected" class="text-center text-lg">
         Ventas de la fecha: <span class="font-black">{{ sales.date }}</span>
       </p>
