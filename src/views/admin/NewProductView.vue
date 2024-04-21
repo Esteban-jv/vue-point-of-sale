@@ -34,7 +34,7 @@
 </script>
 
 <template>
-  <div class="greetings">
+  <div class="ml-3">
     <Link
       :to="{name: 'products'}"
     >
