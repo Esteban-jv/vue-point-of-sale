@@ -1,14 +1,14 @@
-import { ref, computed } from "vue";
+import { ref, computed, watchEffect } from "vue";
 import { defineStore } from "pinia";
-import { Query, collection, where, orderBy } from "firebase/firestore";
+import { query, collection, where, orderBy, getDocs } from "firebase/firestore";
 import { useFirestore, useCollection } from "vuefire";
-import { query } from "firebase/database";
 
 export const useSalesStore = defineStore('sales', () => {
 
     //DATA
     const date = ref('')
     const db = useFirestore()
+    const loading = ref(false)
 
     //COMPUTED
     const isDateSelected = computed(() => date.value)
@@ -31,10 +31,27 @@ export const useSalesStore = defineStore('sales', () => {
     })
     const salesCollection = useCollection(salesSource)
 
+    // Watch
+    watchEffect(async () => {
+        if(salesSource.value) {
+            loading.value = true
+
+            try {
+                const snapshot = await getDocs(salesSource.value)
+                console.warn(snapshot)
+            } catch (err) {
+                console.error(err)
+            } finally {
+                loading.value = false
+            }
+        }
+    })
+
     return {
         //DATA
         date,
         salesCollection,
+        loading,
         //METHODS
         //COMPUTED
         isDateSelected,

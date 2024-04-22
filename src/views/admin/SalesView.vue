@@ -3,6 +3,7 @@
   import VueTailwindDatePicker from 'vue-tailwind-datepicker'
   import { useSalesStore } from '@/stores/sales';
   import SalesDetails from '@/components/SalesDetails.vue';
+  import Spinner from '@/components/Spinner.vue';
 
   const sales = useSalesStore()
 
@@ -10,8 +11,6 @@
     date: 'DD/MM/YYYY',
     month: 'MMMM'
   })
-
-  console.log(sales.salesCollection)
 </script>
 
 <template>
@@ -27,7 +26,10 @@
         :formatter="formatter"
       /> <!-- -->
     </div>
-    <div class="md:w-3/4 lg:w-2/3 space-y-5 lg:h-screen lg:overflow-y-scroll p-5 pb-32">
+    <div v-if="sales.loading" class="md:w-3/4 lg:w-2/3 space-y-5">
+      <Spinner />
+    </div>
+    <div v-else class="md:w-3/4 lg:w-2/3 space-y-5 lg:h-screen lg:overflow-y-scroll p-5 pb-32">
       <p v-if="sales.isDateSelected" class="text-center text-lg">
         Ventas de la fecha: <span class="font-black">{{ sales.date }}</span>
       </p>

@@ -44,7 +44,7 @@
       </button>
       <input
         type="number"
-        class="w-16 h-10 text-center p-2 bg-white"
+        class="w-16 h-10 text-center p-2 bg-white border-none"
         :value="item.quantity"
         :disabled="true"
       >
